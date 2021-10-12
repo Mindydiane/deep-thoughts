@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React from 'react';
 import ThoughtList from "../components/ThoughtList";
 
 import { useQuery } from "@apollo/react-hooks";

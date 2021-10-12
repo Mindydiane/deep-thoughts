@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/react-hooks';
 import { ADD_USER } from '../utils/mutations';
 
 const Signup = () => {
@@ -17,22 +17,21 @@ const Signup = () => {
   // use mutation hook wraps around and returns it to us; also has the ability to check for errors.
   const [addUser, { error }] = useMutation(ADD_USER);
 
-  // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-  };
+  // submit form (notice the async!)
+const handleFormSubmit = async event => {
+  event.preventDefault();
 
-    // use try/catch instead of promises to handle errors
-    try {
-      // execute addUser mutation and pass in variable data from form
-      const { data } = await addUser({
-        variables: { ...formState }
-      });
-      console.log(data);
-    } catch (e) {
-      console.error(e);
-    }
-  
+  // use try/catch instead of promises to handle errors
+  try {
+    // execute addUser mutation and pass in variable data from form
+    const { data } = await addUser({
+      variables: { ...formState }
+    });
+    console.log(data);
+  } catch (e) {
+    console.error(e);
+  }
+  };
 
   return (
     <main className='flex-row justify-center mb-4'>
@@ -78,6 +77,6 @@ const Signup = () => {
       </div>
     </main>
   );
-};
+}
 
 export default Signup;
